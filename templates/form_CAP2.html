@@ -1,0 +1,239 @@
+<html>
+	<head>		
+		<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="static/bootstrap337/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="static/general_style.css">
+		<link rel="stylesheet" media="screen" href ="static/bootstrap337/css/bootstrap.min.css">
+		<link rel="stylesheet" href="static/header_style.css">
+		<script src="static/jscripts.js"></script>
+		<script src="static/jquery.min.js"></script>
+		<script src="static/bootstrap337/js/bootstrap.js"></script>
+		<script src="static/bootstrap337/js/bootstrap.min.js"></script>
+		<title>Speech Recording Platform</title>		 
+	</head>		
+
+	<body onload="set_rtas()">
+    
+		<script type="text/javascript">
+			var Rtas =  {{Rtas|safe}}; 	
+		</script>
+		
+		<div class="topnav" id="myTopnav">				
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/register">Registrieren</a></li>
+				<li><a href="/CI_speech_tasks">CI Test</a></li>
+				<!-- <li><a href="/downloads">Download</a></li> -->
+				<li><a href="/login" id="vallog">Login</a></li>
+			<!-- 	<li><a id="vallog">&#9919; Login</a></li> -->
+				<li><a href="javascript:void(0);" id="icon" class="icon" onclick="toggle_menu('myTopnav')">&#9776;</a></li>	
+			</ul>	
+		</div>
+		<form enctype=multipart/form-data id="cap2_score" class="main_container"  method="post">	
+
+			<div class="row">
+
+<!-- 		****************************************************************************************************************
+			****************************************************************************************************************
+											general information
+			****************************************************************************************************************
+			**************************************************************************************************************** -->
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="title">Allgemeine Information</div>
+				</div>	
+
+				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+					<label>Name:</label> <p>{{spkINFO["lastname"]}}</p>
+				</div>
+				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+					<label>Vorname:</label> <p>{{spkINFO["name"]}}</p>						
+				</div>
+				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+					<label>Geschlecht:</label> <p>{{spkINFO["gender"]}}</p>
+				</div>
+				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+					<label>Geburtsdatum:</label> <p>{{spkINFO["birthdate"]}}</p>						
+				</div>
+				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+					<label>Patientennummer:</label> <p>{{spkINFO["speakerID"]}}</p>						
+				</div>
+
+<!-- 		****************************************************************************************************************
+			****************************************************************************************************************
+											Inputa data
+			****************************************************************************************************************
+			**************************************************************************************************************** -->
+<!-- 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<br>
+					<div id="drawline"></div>
+					<br>
+				</div>
+			
+				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+					<label>Art der Versorgung:</label></div>
+				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="CAP2_citype_bimo" 
+					name="CAP2_citype" 
+					value="bimodal (CI + HG)" required> 
+					bimodal (CI + HG)</div>
+				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="CAP2_citype_bila" 
+					name="CAP2_citype" 
+					value="bilateral (CI + CI)"> 
+					bilateral (CI + CI)</div>
+				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="CAP2_citype_unilat2" 
+					name="CAP2_citype" 
+					value="unilateral (CI + taub/kein HG)"> 
+					unilateral (CI+taub/keine Hörhilfe)
+				</div>	 -->
+	
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<br>
+					<div id="drawline"></div>
+					<br>
+				</div>
+
+<!-- 		****************************************************************************************************************
+			****************************************************************************************************************
+											CAP2 socre table
+			****************************************************************************************************************
+			**************************************************************************************************************** -->
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="title">CAP-II-Score</div>
+				</div>	
+
+				<div class="col-xs-8 col-sm-3 col-md-3 col-lg-2">
+					<label>Datum:</label>		
+					<input type="date" name="CAP2_datum" id="CAP2_datum" max="3000-01-01" min="2018-01-01" required/>			
+				</div>				
+				
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<table class="askutable">
+						<tr>     
+							<th>Werte</th>
+							<th>Bestmögliche Hörreaktion</th>
+							<th>CAP-II-Score</th>
+						</tr>
+						<tr class="askutablerad">
+							<td>0</td>
+							<td style="text-align: left">
+								<label style="color:var(--secondary-color)">Keine Hörreaktion</label>
+							</td>
+							<td>
+								<input type="radio" class="option-input checkbox" id="q0_cap2" name="qcap2" value="0" >
+							</td>
+						</tr>
+						<tr class="askutablerad">
+							<td>1</td>
+							<td style="text-align: left">
+								<label style="color:var(--secondary-color)">Geräuschwahrnehmung</label><br>
+								Der Patient nimmt mindestens fünf verschiedenen Geräusche wahr.									
+							</td>
+							<td>
+								<input type="radio" class="option-input checkbox" id="q1_cap2" name="qcap2" value="1" >
+							</td>
+						</tr>
+						<tr class="askutablerad">
+							<td>2</td>
+							<td style="text-align: left">
+								<label style="color:var(--secondary-color)">Sprachwahrnehmung</label><br>								
+								Der Patient hört, wenn gesprochen wird oder er angesprochen wird, ohne zu verstehen, was gesagt wird.
+							</td>
+							<td>
+								<input type="radio" class="option-input checkbox" id="q2_cap2" name="qcap2" value="2" >
+							</td>
+						</tr>
+						<tr class="askutablerad">
+							<td>3</td>
+							<td style="text-align: left">
+								<label style="color:var(--secondary-color)">Geräuschidentifikation</label><br>
+								Der Patient kann mindestens fünf verschiedene Geräusche erkennen.
+							</td>
+							<td>
+								<input type="radio" class="option-input checkbox" id="q3_cap2" name="qcap2" value="3" >
+							</td>
+						</tr>
+						<tr class="askutablerad">
+							<td>4</td>
+							<td style="text-align: left">
+								<label style="color:var(--secondary-color)">Diskrimination von Sprachlauten</label><br>
+								Der Patient kann zwischen verschiedenen Sprachlauten unterscheiden, z.B. LING-Laute (ohne Mundbild).
+							</td>
+							<td>
+								<input type="radio" class="option-input checkbox" id="q4_cap2" name="qcap2" value="4" >
+							</td>
+						</tr>
+						<tr class="askutablerad">
+							<td>5</td>
+							<td style="text-align: left">
+								<label style="color:var(--secondary-color)">Einfaches Sprachverstehen, Verstehen von Sätzen</label><br>
+								Der Patient versteht alltägliche Aufforderungen und Sätze, z.B. “mach das Licht an” (ohne Mundbild).
+							</td>
+							<td>
+								<input type="radio" class="option-input checkbox" id="q5_cap2" name="qcap2" value="5" >
+							</td>
+						</tr>
+						<tr class="askutablerad">
+							<td>6</td>
+							<td style="text-align: left">
+								<label style="color:var(--secondary-color)">Offenes Sprachverstehen in Ruhe</label><br>
+								Der Patient kann ein Gespäch in ruhiger Umgebung verstehen (ohne Mundbild). 
+							</td>
+							<td>
+								<input type="radio" class="option-input checkbox" id="q6_cap2" name="qcap2" value="6" >
+							</td>
+						</tr>
+						<tr class="askutablerad">
+							<td>7</td>
+							<td style="text-align: left">
+								<label style="color:var(--secondary-color)">Telefonieren mit bekannter Person</label><br>
+								Der Patient kann mit einer bekannten Person am Telefon ein offenes Gespräch führen und Fragen beantworten. 
+							</td>
+							<td>
+								<input type="radio" class="option-input checkbox" id="q7_cap2" name="qcap2" value="7" >
+							</td>
+						</tr>
+						<tr class="askutablerad">
+							<td>8</td>
+							<td style="text-align: left">
+								<label style="color:var(--secondary-color)">Offenes Sprachverstehen in einer Gruppe oder in geräuschvoller Umgebung</label><br>
+								Der Patient kann einem Gespräch in einer Gruppe mit mehreren Sprechern oder in geräuschvoller Umgebung folgen, z.B. in einem Klassenzimmer oder Restaurant. 
+								 
+							</td>
+							<td>
+								<input type="radio" class="option-input checkbox" id="q8_cap2" name="qcap2" value="8" >
+							</td>
+						</tr>
+						<tr class="askutablerad">
+							<td>9</td>
+							<td style="text-align: left">
+								<label style="color:var(--secondary-color)">Telefonieren mit unbekannter Person</label><br>
+								Der Patient kann mit einer unbekannten Person am Telefon ein offenes Gespräch führen und Fragen beantworten.																 
+							</td>
+							<td>
+								<input type="radio" class="option-input checkbox" id="q9_cap2" name="qcap2" value="9" >
+							</td>
+						</tr>			
+					</table>
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<br><br>
+					<button type="submit" action="form_CAP2" id="CAP2_submit" name="CAP2_submit">Fertig</button>
+				</div>
+
+			</div>
+
+		</form>
+	</body>
+</html>

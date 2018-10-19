@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>		
+		<script src="static/jscripts.js"></script>
+		<script src="static/jquery.min.js"></script>
+		<script src="static/bootstrap337/js/bootstrap.js"></script>
+		<script src="static/bootstrap337/js/bootstrap.min.js"></script>
+		<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="static/bootstrap337/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="static/general_style.css">
+		<link rel="stylesheet" media="screen" href ="static/bootstrap337/css/bootstrap.min.css">
+		<link rel="stylesheet"  href="static/header_style.css">
+		<title>Speech Recording Platform</title>		 
+	</head>		
+	
+	<body>
+		<div class="topnav" id="myTopnav">				
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/register">Registrieren</a></li>
+				<li><a href="/CI_speech_tasks">CI Test</a></li>
+				<!-- <li><a href="/downloads">Download</a></li> -->
+				<li><a href="/login" id="vallog">Login</a></li>
+			</ul>	
+		</div>
+		<form enctype=multipart/form-data class="main_container" method="post">	
+			<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+			<div class="title">Für neue Patienten</div>	
+			<p>Neue Patienten (oder gesunde Personen) müssen registriert werden. Klicken Sie <a id="normal_link" href="/register">hier</a> oder gehen Sie auf die Option "Registrieren" in der Navigationsleiste.</p>
+
+			<div class="title">Für registrierte Patienten</div>	
+			<p>Wenn der Patient (oder eine gesunde Person) bereits registriert ist klicken Sie <a id="normal_link" href="/login">hier</a> um sich einzuloggen oder gehen Sie zur "Login" -Option in der Navigationsleiste.</p>
+
+			<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->				
+		</form>
+	</body>
+</html>

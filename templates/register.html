@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>		
+		<script src="static/jscripts.js"></script>
+		<script src="static/jquery.min.js"></script>
+		<script src="static/bootstrap337/js/bootstrap.js"></script>
+		<script src="static/bootstrap337/js/bootstrap.min.js"></script>
+		<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="static/bootstrap337/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" media="screen" href="static/general_style.css">
+		<link rel="stylesheet" media="screen" href ="static/bootstrap337/css/bootstrap.min.css">
+		<link rel="stylesheet" media="screen" href="static/header_style.css">
+		<title>Speech Recording Platform</title>		 
+	</head>			
+	
+	<body>
+		<div class="topnav" id="myTopnav">				
+			<ul>
+				<li><a href="/">Home</a></li>
+<!-- 					<li><a id="vallog">&#9919; Login</a></li>
+				<li><a href="javascript:void(0);" id="icon" class="icon" onclick="toggle_menu('myTopnav')">&#9776;</a></li>	 -->
+			</ul>	
+		</div>
+		<form action="register" id="reg_form" class="main_container"  method="post">	
+			<div class="row">
+					
+				<div class="title">Registrieren</div>
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>Art des Lautsprechers:&nbsp&nbsp&nbsp&nbsp
+						</label><br>
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="reg_spk_CI" 
+						name="reg_spklabel" 
+						value="CI-Benutzer" 
+						onclick="setCont(Info_CI_Users);document.getElementById('reg_spkID').value=''"/> 
+						Cochlea-Implantat&nbsp&nbsp&nbsp&nbsp
+						<br>
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="reg_spk_HA" 
+						name="reg_spklabel" 
+						value="Hörgerät" 
+						onclick="setCont(Info_CI_Users);document.getElementById('reg_spkID').value=''"/> 
+						Hörgerät&nbsp&nbsp&nbsp&nbsp
+						<br>
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="reg_spk_HC"
+						name="reg_spklabel" 
+						value="gesunde Kontrolle"
+						onclick="ResetCont(Info_CI_Users);generate_spkID('reg_spkID')"/
+						required>
+						Gesunde Kontrolle
+				</div>
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>Geschlecht:</label><br>
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="reg_Female" 
+						name="reg_gender" 
+						value="Frau"> 
+						Frau&nbsp&nbsp&nbsp&nbsp
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="reg_Male"
+						name="reg_gender" 
+						value="Mann"
+						required>
+						Mann
+				</div>
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><br></div>
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>Name:</label><br>
+					<input type="text" id="reg_lastname" name="reg_lastname" placeholder="name" required/>
+					
+				</div>
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>Vorname:</label>			
+					<input type="text" id="reg_name" name="reg_name" placeholder="vorname" required/>			
+				</div>
+				
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><br></div>
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>Geburtsdatum:
+					</label>
+					<input type="date" name="reg_birthday" id="reg_birthday" max="3000-01-01" min="1900-01-01" required/>
+				</div>
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>Patientennummer:
+						<a id="helptool"
+						onclick="alert('Bei gesunden Personen wird die Patientennummer automatisch generiert')">?
+						</a>
+					</label><br>
+					<input type="text" id="reg_spkID" name="reg_spkID" placeholder="fallnummer"  required/>
+				</div>
+				
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><br></div>
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>Muttersprache(n):</label>
+					<input type="text" name="reg_mothertongue" id="reg_mothertongue" placeholder="Muttersprache(n)" required/>
+				</div>
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>Dialekt/Akzent:</label><br>
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="reg_dialekt_ja" 
+						name="reg_dialekt" 
+						value="Ja"> 
+						Ja&nbsp&nbsp&nbsp&nbsp
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="reg_dialekt_nein"
+						name="reg_dialekt" 
+						value="Nein"
+						required>
+						Nein
+				</div>			
+				
+
+				<div class="hidden" id="Info_CI_Users">				
+					
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="title">Informationen zum Schwerhörigkeit</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="reg_lossjahre" 
+						name="reg_losshearing" 
+						value="years"
+						onclick="setCont(containeryearloss);"
+						required/> 
+						Ertaubung Alter (Jahre)
+					</div>	
+					<div class="hidden" id="containeryearloss">
+						<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+							<br>
+							<input type="number" id="reg_yearloss" name="reg_yearloss" step="0.01" min=0 placeholder="Jahre" required="True"/>				
+						</div>
+					</div>
+					
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="reg_losschild" 
+						name="reg_losshearing" 
+						value="childhood"
+						onclick="ResetCont(containeryearloss);"/> 
+						Ertaubung im Kindesalter
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="reg_lossadult"
+						name="reg_losshearing" 
+						value="adulthood"
+						onclick="ResetCont(containeryearloss);"/>
+						Ertaubung im Erwachsenenalter
+					</div>
+
+				</div>
+				
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><br></div>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+					<button type="submit" id="reg_submit" name="reg_submit">Fertig</button>
+				</div>	
+
+			</div>
+		</form>
+	</body>
+</html>

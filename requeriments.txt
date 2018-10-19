@@ -1,0 +1,51 @@
+Windows64 (For linux and windowsx32 download a different fmedia distribution. See the "Speech recording" section below)
+
+python 3 or higher
+
+##########################Speech recording#################################
+Recordings are capture using fmedia: http://fmedia.firmdev.com/
+
+You have to add the path of the ''fmedia'' folder to Windows enviroment variables
+###########################From Anaconda prompt############################
+conda install -c anaconda mongodb=3.6.5   ###This is the version that works on june-july-august 2018
+
+conda install -c anaconda pymongo 
+
+conda install -c anaconda flask-login 
+
+###########################BATCH FILE (Windows)##########################################
+@echo off
+set dpath=%cd%\data\db
+IF NOT EXIST %dpath% md %dpath%
+start mongod --dbpath %dpath%
+start python main.py
+timeout 5 >nul
+start "" http://127.0.0.1:5000
+
+
+Windows32
+
+python 3 or higher
+
+##########################Speech recording#################################
+Recordings are capture using fmedia: http://fmedia.firmdev.com/
+###########################################################################
+
+###########################Mongod############################
+Install mongodb https://www.mongodb.org/dl/win32/i386 for windows 32-bit
+
+Add the bins from the mongodb installation to the enviroment variables
+e.g. C:\Program Files\MongoDB\Server\3.2\bin\
+###########################From Anaconda prompt############################
+conda install -c anaconda pymongo 
+
+conda install -c anaconda flask-login 
+###########################BATCH FILE (Windows)##########################################
+@echo off
+set dpath=%cd%\data\db
+IF NOT EXIST %dpath% md %dpath%
+start mongod --storageEngine=mmapv1 --dbpath %dpath%
+start python main.py
+timeout 5 >nul
+start "" http://127.0.0.1:5000
+

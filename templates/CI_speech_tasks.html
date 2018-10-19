@@ -1,0 +1,191 @@
+<html>
+	<head>		
+		<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="static/bootstrap337/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="static/general_style.css">
+		<link rel="stylesheet" media="screen" href ="static/bootstrap337/css/bootstrap.min.css">
+		<link rel="stylesheet" href="static/header_style.css">
+		<script src="static/jscripts.js"></script>
+		<script src="static/jquery.min.js"></script>
+		<script src="static/bootstrap337/js/bootstrap.js"></script>
+		<script src="static/bootstrap337/js/bootstrap.min.js"></script>
+		<title>Speech Recording Platform</title>		 
+	</head>	
+	
+	<body onload="set_metadata(metadataCI)">
+		 <script type="text/javascript">
+			 var meta_flag = {{meta_flag|safe}};
+		</script>
+		<div class="topnav" id="myTopnav">				
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/register">Registrieren</a></li>
+				<li><a href="/login" id="vallog">Login</a></li>
+				<li><a href="javascript:void(0);" id="icon" class="icon" onclick="toggle_menu('myTopnav')">&#9776;</a></li>	
+			</ul>	
+		</div>
+		<form enctype=multipart/form-data class="main_container" method="post">	
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="title">Allgemeine Information</div>
+				</div>	
+
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+					<label>Name:</label> <p>{{spkINFO["lastname"]}}</p>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+					<label>Vorname:</label> <p>{{spkINFO["name"]}}</p>						
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+					<label>Geschlecht:</label> <p>{{spkINFO["gender"]}}</p>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+					<label>Geburtsdatum:</label> <p>{{spkINFO["birthdate"]}}</p>						
+				</div>
+				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+					<label>Patientennummer:</label> <p>{{spkINFO["speakerID"]}}</p>						
+				</div>
+
+
+				<!-- ************************************************************************************************************** -->
+				<!-- ************************************************************************************************************** -->
+				<!-- ************************************************************************************************************** -->
+				
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="title">Sprachaufnahme</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<table class="table">
+						<tr>     
+							<th style="text-align:center">Sprachtest</th>
+							<th style="text-align:center">Test auswählen</th>
+						</tr>
+						<tr>
+							<td>Einzelwörter benennen: PLAKSS</td>
+							<td><a style="display:block;text-align:center"
+								id="gicons"  
+								name="module_PLAKSS" 
+								href="/module_PLAKSS">
+								<span  class="glyphicon glyphicon-log-in"></span>
+							</a></td>
+						</tr>
+						<tr>
+							<td>Sätze vorlesen: Rhino-Sätze</td>
+							<td><a style="display:block;text-align:center"
+								id="gicons" 
+								name="module_Rhino"
+								href="/module_Rhino">
+								<span  class="glyphicon glyphicon-log-in"></span>
+							</a></td>
+						</tr>
+
+						<tr>
+							<td>Text vorlesen: Nordwind und Sonne</td>
+							<td><a style="display:block;text-align:center"
+								id="gicons" 
+								name="module_Nordwind" 
+								href="/module_Nordwind">
+								<span  class="glyphicon glyphicon-log-in"></span>							
+							</a></td>
+						</tr>
+
+						<tr>
+							<td>Freies erzählen: Cookie-Theft-Picture</td>
+							<td><a style="display:block;text-align:center"
+								id="gicons" 
+								name="module_Cookie"
+								 href="/module_Cookie">
+								 <span  class="glyphicon glyphicon-log-in"></span>
+								</a></td>
+						</tr>
+
+						<tr>
+							<td>Diadochokinese: PATAKA</td>
+							<td><a style="display:block;text-align:center"
+								id="gicons" 
+								name="module_PATAKA" 
+								href="/module_PATAKA">
+								<span  class="glyphicon glyphicon-log-in"></span>
+							</a></td>
+						</tr>
+
+						<tr>
+							<td>Sätze vorlesen 2: Spracheigenschaften</td>
+							<td><a style="display:block;text-align:center"
+								id="gicons" 
+								name="module_VoiceSentences" 
+								href="/module_VoiceSentences">
+								<span  class="glyphicon glyphicon-log-in"></span>
+							</a></td>
+						</tr>
+					</table>
+				</div>	
+
+				<!-- ************************************************************************************************************** -->
+				<!-- ************************************************************************************************************** -->
+				<!-- ************************************************************************************************************** -->
+				<div class="hidden" id="metadataCI">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="title">Metadaten</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<table class="table">
+							<tr>     
+								<th style="text-align:center">Formular</th>
+								<th style="text-align:center">Verknüpfung</th>
+							</tr>
+							<tr>
+								<td>Fragebogen</td>
+								<td><a style="display:block;text-align:center"
+									id="gicons"  
+									name="form_fragebogen" 
+									href="/form_fragebogen">
+									<span  class="glyphicon glyphicon-log-in"></span>
+								</a></td>
+							</tr>
+
+							<tr>
+								<td>ASKU Score</td>
+								<td><a style="display:block;text-align:center"
+									id="gicons"  
+									name="form_ASKUfragen" 
+									href="/form_ASKUfragen">
+									<span  class="glyphicon glyphicon-log-in"></span>
+								</a></td>
+							</tr>	
+
+							<tr>
+								<td>CAP-II Score</td>
+								<td><a style="display:block;text-align:center"
+									id="gicons"  
+									name="form_CAP2" 
+									href="/form_CAP2">
+									<span  class="glyphicon glyphicon-log-in"></span>
+								</a></td>
+							</tr>	
+												
+						</table>
+					</div>	
+				</div>
+
+				<!-- ************************************************************************************************************** -->
+				<!-- ************************************************************************************************************** -->
+				<!-- ************************************************************************************************************** -->
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="title">Zusätzliche Kommentare</div>
+				</div>
+				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+					<textarea id="citest_recomments" name="citest_recomments" rows="5"></textarea>
+				</div>
+				
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><br></div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					<button type="submit" id="citest_submitcomm" name="citest_submitcomm">Kommentar</button>
+				</div>
+
+			</div>
+		</form>
+	</body>
+</html>

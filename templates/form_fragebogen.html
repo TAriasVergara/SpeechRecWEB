@@ -1,0 +1,774 @@
+<html>
+	<head>		
+		<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="static/bootstrap337/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="static/general_style.css">
+		<link rel="stylesheet" media="screen" href ="static/bootstrap337/css/bootstrap.min.css">
+		<link rel="stylesheet" href="static/header_style.css">
+		<script src="static/jscripts.js"></script>
+		<script src="static/jquery.min.js"></script>
+		<script src="static/bootstrap337/js/bootstrap.js"></script>
+		<script src="static/bootstrap337/js/bootstrap.min.js"></script>
+		<title>Speech Recording Platform</title>		 
+	</head>		
+
+	<body onload="set_rtas()">
+    
+		<script type="text/javascript">
+			var Rtas =  {{Rtas|safe}}; 	
+		</script>
+		
+		<div class="topnav" id="myTopnav">				
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/register">Registrieren</a></li>
+				<li><a href="/CI_speech_tasks">CI Test</a></li>
+				<!-- <li><a href="/downloads">Download</a></li> -->
+				<li><a href="/login" id="vallog">Login</a></li>
+			<!-- 	<li><a id="vallog">&#9919; Login</a></li> -->
+				<li><a href="javascript:void(0);" id="icon" class="icon" onclick="toggle_menu('myTopnav')">&#9776;</a></li>	
+			</ul>	
+		</div>
+		<form enctype=multipart/form-data id="fragen_form" class="main_container"  method="post">	
+<!-- 		****************************************************************************************************************
+			****************************************************************************************************************
+											Allgemeine Information
+			****************************************************************************************************************
+			**************************************************************************************************************** -->
+
+			<div class="row" style="border: 1px solid var(--main-bg-color)">
+				
+				<div class="title2">Allgemeine Information</div>
+				<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+					<label>Name:</label> <p>{{spkINFO["lastname"]}}</p>
+				</div>
+				<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+					<label>Vorname:</label> <p>{{spkINFO["name"]}}</p>						
+				</div>
+				<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+					<label>Geschlecht:</label> <p>{{spkINFO["gender"]}}</p>
+				</div>
+				<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+					<label>Geburtsdatum:</label> <p>{{spkINFO["birthdate"]}}</p>						
+				</div>
+				<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+					<label>Muttersprache:</label> <p>{{spkINFO["nativelanguage"]}}</p>						
+				</div>
+				<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+					<label>Dialekt/Akzent:</label> <p>{{spkINFO["dialect"]}}</p>						
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+					<label>Patientennummer:</label> <p>{{spkINFO["speakerID"]}}</p>						
+				</div>
+
+			</div>
+
+<!-- 		****************************************************************************************************************
+			****************************************************************************************************************
+											Allgemeine Fragen
+			****************************************************************************************************************
+			**************************************************************************************************************** -->
+				
+			<div class="row" style="border: 1px solid var(--main-bg-color)">
+				<div class="title2">Allgemeine Fragen</div>
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>Datum:</label><br>
+					<input type="date" name="fragen_datum" id="fragen_datum" max="3000-01-01" min="2018-01-01" required/>
+				</div>					
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<br>
+					<div id="drawline"></div>
+					<br>
+				</div>
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>Höchster Bildungsabschluss (Schule/Studium):</label>
+					<input type="text" name="fragen_education" id="fragen_education" placeholder="Höchster Bildungsabschluss" required/>
+				</div>
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"><!--I regret nothing-->
+					<label>Beruf:
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+					</label>
+					<input type="text" name="fragen_occupation" id="fragen_occupation" placeholder="Beruf" required/>
+					<br>
+				</div>
+			</div>
+			
+<!-- 		****************************************************************************************************************
+			****************************************************************************************************************
+											Fragen zu Ihrer Hörentwicklung
+			****************************************************************************************************************
+			**************************************************************************************************************** -->
+			
+			<div class="row" style="border: 1px solid var(--main-bg-color)">
+		
+				<div class="title2">Fragen zu Ihrer Hörentwicklung</div>
+
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<label>Schwerhörig seit wann?</label>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>links:</label>
+					<input type="text" name="fragen_lossleft" id="fragen_lossleft" required/>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>rechts:</label>
+					<input type="text" name="fragen_lossright" id="fragen_lossright" required/>
+				</div>
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<br>
+					<div id="drawline"></div>
+					<br>
+				</div>
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<label>Verlauf der Schwerhörigkeit:</label>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>links:</label><br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_progress_l_acute" 
+					name="fragen_progress_left" 
+					value="akut"> 
+					akut&nbsp&nbsp&nbsp&nbsp
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_progress_l_increas" 
+					name="fragen_progress_left" 
+					value="zunehmend"
+					required>
+					zunehmend
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>rechts:</label><br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_progress_r_acute" 
+					name="fragen_progress_right" 
+					value="akut"> 
+					akut&nbsp&nbsp&nbsp&nbsp
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_progress_r_increas" 
+					name="fragen_progress_right" 
+					value="zunehmend"
+					required>
+					zunehmend
+				</div>
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<br>
+					<div id="drawline"></div>
+					<br>
+				</div>
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>Art der Schwerhörigkeit:</label><br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_type_post" 
+					name="fragen_type" 
+					value="postlingual"> 
+					postlingual&nbsp&nbsp&nbsp&nbsp
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_type_pre" 
+					name="fragen_type" 
+					value="prälingual"
+					required>
+					prälingual
+				</div>
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<br>
+					<div id="drawline"></div>
+					<br>
+				</div>			
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					<label>Ursache der Schwerhörigkeit:</label>
+					<input type="text" name="fragen_cause" id="fragen_cause" required/>
+				</div>
+			</div>
+			
+<!-- 		****************************************************************************************************************
+			****************************************************************************************************************
+											Fragen zur Hörgeräte-Versorgung
+			****************************************************************************************************************
+			**************************************************************************************************************** -->
+			
+			<div class="row" style="border: 1px solid var(--main-bg-color)">
+				<div class="title2">Fragen zur Hörgeräte-Versorgung</div>
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<label>Hörgerät seit wann?</label>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>links:</label>
+					<input type="text" name="fragen_aidleft" id="fragen_aidleft" required/>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>rechts:</label>
+					<input type="text" name="fragen_aidright" id="fragen_aidright" required/>
+				</div>				
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<br>
+					<div id="drawline"></div>
+					<br>
+				</div>
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>Sind Sie mit Ihrem aktuellen Hörgerät zufrieden?</label><br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_satisfa_ja" 
+					name="fragen_satisfa" 
+					value="ja"> 
+					ja&nbsp&nbsp&nbsp&nbsp
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_satisfa_nein" 
+					name="fragen_satisfa" 
+					value="nein"
+					required>
+					nein
+				</div>				
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<br>
+					<div id="drawline"></div>
+					<br>
+				</div>
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<label>Ertaubung: Ab wann war Ihr Hörgerät nicht mehr ausreichend?</label>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>links:</label>
+					<input type="text" name="fragen_aidstopleft" id="fragen_aidstopleft" required/>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<label>rechts:</label>
+					<input type="text" name="fragen_aidstopright" id="fragen_aidstopright" required/>
+				</div>
+				
+			</div>
+
+
+<!-- 		****************************************************************************************************************
+			****************************************************************************************************************
+											Fragen zur CI-Versorgung
+			****************************************************************************************************************
+			**************************************************************************************************************** -->
+			
+			<div class="row" style="border: 1px solid var(--main-bg-color);padding-bottom: 10px;">
+					<div class="title2">Fragen zur CI-Versorgung</div>
+	
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<label>CI seit?</label>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+						<label>links:</label>
+						<input type="text" name="fragen_cileft" id="fragen_cileft" required/>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+						<label>rechts:</label>
+						<input type="text" name="fragen_ciright" id="fragen_ciright" required/>
+					</div>				
+	
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<br>
+						<div id="drawline"></div>
+						<br>
+					</div>
+	
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+						<label>CI-Reimplantation?</label><br>
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="fragen_cire_ja_hab" 
+						name="fragen_cire" 
+						value="ja"
+						onclick="setCont(cirecont);"> 
+						ja&nbsp&nbsp&nbsp&nbsp
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="fragen_cire_nein" 
+						name="fragen_cire" 
+						value="nein"
+						onclick="ResetCont(cirecont);"
+						required>
+						nein
+					</div>	
+
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<br>
+					</div>
+	
+					<div class="hidden" id="cirecont">
+						<br>
+						<div class="col-xs-12 col-sm-4 col-md-4 col-lg-2">
+							<label>am:</label><br>
+							<input type="text" name="fragen_ciream" id="fragen_ciream" required/>
+						</div>	
+					</div>			
+	
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<br>
+						<div id="drawline"></div>
+						<br>
+					</div>
+	
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<label>Welches CI haben Sie?</label>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+						<label>links:</label>
+						<input type="text" name="fragen_whichleft" id="fragen_whichleft" required/>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+						<label>rechts:</label>
+						<input type="text" name="fragen_whichright" id="fragen_whichright" required/>
+					</div>
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<br>
+					<div id="drawline"></div>
+					<br>
+				</div>
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<br>
+					<label>Art der Versorgung</label><br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_citype_bimo" 
+					name="fragen_citype" 
+					value="bimodal (CI + HG)"> 
+					bimodal (CI + HG)<br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_citype_bila" 
+					name="fragen_citype" 
+					value="bilateral (CI + CI)"> 
+					bilateral (CI + CI)<br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_citype_unilat1" 
+					name="fragen_citype" 
+					value="unilateral (CI + NH)"> 
+					unilateral (CI + NH)<br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_citype_unilat2" 
+					name="fragen_citype" 
+					value="unilateral (CI + taub/kein HG)"> 
+					unilateral (CI + taub/kein HG)
+				</div>	
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+					<br>
+					<label>Wie lange tragen Sie Ihr CI (und ggf. HG) durchschnittlich pro Tag?</label><br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_ciwear_g4" 
+					name="fragen_ciwear" 
+					value="4 Std"> 
+					&#60 4 Std<br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_ciwear_48" 
+					name="fragen_ciwear" 
+					value="4-8 Std"> 
+					4-8 Std<br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_ciwear_g8" 
+					name="fragen_ciwear" 
+					value="unilateral (CI + NH)"> 
+					&#62 8 Std	
+				</div>
+			</div>
+
+
+<!-- 		****************************************************************************************************************
+			****************************************************************************************************************
+											Fragen zu Ihrem aktuellen Sprechen und Verstehen
+			****************************************************************************************************************
+			**************************************************************************************************************** -->
+			<div class="row" style="border: 1px solid var(--main-bg-color);padding-bottom: 10px;">
+				<div class="title2">Fragen zu Ihrem aktuellen Sprechen und Verstehen</div>
+
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+					<br>
+					<label>Mein Verstehen im Alltag (Schulnoten):</label><br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_verstehen_unge" 
+					name="fragen_verstehen" 
+					value="ungenügend"> 
+					ungenügend (6)<br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_verstehen_mang" 
+					name="fragen_verstehen" 
+					value="mangelhaft"> 
+					mangelhaft (5)<br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_verstehen_ausr" 
+					name="fragen_verstehen" 
+					value="ausreichend"> 
+					ausreichend (4)<br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_verstehen_befr" 
+					name="fragen_verstehen" 
+					value="befriedigend"> 
+					befriedigend (3)<br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_verstehen_gut" 
+					name="fragen_verstehen" 
+					value="gut"> 
+					gut (2)<br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_verstehen_segut" 
+					name="fragen_verstehen" 
+					value="sehr gut"> 
+					sehr gut (1)					
+				</div>
+
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+					<br>
+					<label>Meine Aussprache/ Deutlichkeit/ Verständlichkeit beim Sprechen:</label><br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_Sprechen_norm" 
+					name="fragen_Sprechen" 
+					value="normal/ unauffällig"> 
+					normal/ unauffällig<br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_Sprechen_auff" 
+					name="fragen_Sprechen" 
+					value="auffällig/ anders als bei anderen"> 
+					auffällig/ anders als bei anderen				
+				</div>
+
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+					<br>
+					<label>Meine Stimme/Stimmklang:</label><br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_Stimme_norm" 
+					name="fragen_Stimme" 
+					value="normal/ unauffällig"> 
+					normal/ unauffällig<br>
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="fragen_Stimme_auff" 
+					name="fragen_Stimme" 
+					value="auffällig/ anders als bei anderen"> 
+					auffällig/ anders als bei anderen				
+				</div>
+			</div>
+
+
+<!-- 		****************************************************************************************************************
+			****************************************************************************************************************
+											Fragen zum Sprech-/Hörtraining
+			****************************************************************************************************************
+			**************************************************************************************************************** -->
+			<div class="row" style="border: 1px solid var(--main-bg-color);padding-bottom: 10px;">
+					<div class="title2">Fragen zum Sprech-/Hörtraining</div>
+	
+					<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+						<br>
+						<label>Logopädisches Hörtraining:</label><br>
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="fragen_logopad_nein" 
+						name="fragen_logopad" 
+						value="nein"
+						onclick="ResetCont(ja_logopad)"> 
+						nein (0)<br>
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="fragen_logopad_fruher" 
+						name="fragen_logopad" 
+						value="früher"
+						onclick="ResetCont(ja_logopad)"> 
+						früher (1)<br>	
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="fragen_logopad_ja" 
+						name="fragen_logopad" 
+						value="ja"
+						onclick="setCont(ja_logopad)"> 
+						ja  (2-5)
+						
+						<div class="hidden" id="ja_logopad">
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_logopad_seltener" 
+							name="fragen_logopad" 
+							value="seltener"> 
+							seltener (2)<br>
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_logopad_g1woche" 
+							name="fragen_logopad" 
+							value="g1x/Woche"> 
+							&#62 1x/Woche (3)<br>	
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_logopad_1woche" 
+							name="fragen_logopad" 
+							value="1x/Woche"> 
+							1x/Woche (4)<br>
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_logopad_12monat" 
+							name="fragen_logopad" 
+							value="12x/Monat"> 
+							1-2x/Monat (5)	
+						</div>			
+					</div>
+	
+					<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+						<br>
+						<label>Hörtraining zu Hause:</label><br>
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="fragen_hortraining_nein" 
+						name="fragen_hortraining" 
+						value="nein"
+						onclick="ResetCont(ja_hortraining)"> 
+						nein (0)<br>
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="fragen_hortraining_fruher" 
+						name="fragen_hortraining" 
+						value="früher"
+						onclick="ResetCont(ja_hortraining)"> 
+						früher (1)<br>	
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="fragen_hortraining_ja" 
+						name="fragen_hortraining" 
+						value="ja"
+						onclick="setCont(ja_hortraining)"> 
+						ja  (2-5)
+						
+						<div class="hidden" id="ja_hortraining">
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_hortraining_seltener" 
+							name="fragen_hortraining" 
+							value="seltener"> 
+							seltener (2)<br>
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_hortraining_g1woche" 
+							name="fragen_hortraining" 
+							value="g1x/Woche"> 
+							&#62 1x/Woche (3)<br>	
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_hortraining_1woche" 
+							name="fragen_hortraining" 
+							value="1x/Woche"> 
+							1x/Woche (4)<br>
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_hortraining_12monat" 
+							name="fragen_hortraining" 
+							value="12x/Monat"> 
+							1-2x/Monat (5)	
+						</div>
+					</div>
+	
+					<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+						<br>
+						<label>Logopädische Sprech-/Sprach-/Stimmtherapie:</label><br>
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="fragen_logosprech_nein" 
+						name="fragen_logosprech" 
+						value="nein"
+						onclick="ResetCont(ja_logosprech)"> 
+						nein (0)<br>
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="fragen_logosprech_fruher" 
+						name="fragen_logosprech" 
+						value="früher"
+						onclick="ResetCont(ja_logosprech)"> 
+						früher (1)<br>	
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="fragen_logosprech_ja" 
+						name="fragen_logosprech" 
+						value="ja"
+						onclick="setCont(ja_logosprech)"> 
+						ja  (2-5)
+						
+						<div class="hidden" id="ja_logosprech">
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_logosprech_seltener" 
+							name="fragen_logosprech" 
+							value="seltener"> 
+							seltener (2)<br>
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_logosprech_g1woche" 
+							name="fragen_logosprech" 
+							value="g1x/Woche"> 
+							&#62 1x/Woche (3)<br>	
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_logosprech_1woche" 
+							name="fragen_logosprech" 
+							value="1x/Woche"> 
+							1x/Woche (4)<br>
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_logosprech_12monat" 
+							name="fragen_logosprech" 
+							value="12x/Monat"> 
+							1-2x/Monat (5)	
+						</div>			
+					</div>
+	
+					<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+						<br>
+						<label>Sprech-/Sprach-/Stimmübungen zu Hause:</label><br>
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="fragen_sprechhause_nein" 
+						name="fragen_sprechhause" 
+						value="nein"
+						onclick="ResetCont(ja_sprechhause)"> 
+						nein (0)<br>
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="fragen_sprechhause_fruher" 
+						name="fragen_sprechhause" 
+						value="früher"
+						onclick="ResetCont(ja_sprechhause)"> 
+						früher (1)<br>	
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="fragen_sprechhause_ja" 
+						name="fragen_sprechhause" 
+						value="ja"
+						onclick="setCont(ja_sprechhause)"> 
+						ja  (2-5)
+						
+						<div class="hidden" id="ja_sprechhause">
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_sprechhause_seltener" 
+							name="fragen_sprechhause" 
+							value="seltener"> 
+							seltener (2)<br>
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_sprechhause_g1woche" 
+							name="fragen_sprechhause" 
+							value="g1x/Woche"> 
+							&#62 1x/Woche (3)<br>	
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_sprechhause_1woche" 
+							name="fragen_sprechhause" 
+							value="1x/Woche"> 
+							1x/Woche (4)<br>
+							&nbsp&nbsp&nbsp&nbsp<input 
+							type="radio" 
+							class="option-input radio" 
+							id="fragen_sprechhause_12monat" 
+							name="fragen_sprechhause" 
+							value="12x/Monat"> 
+							1-2x/Monat (5)	
+						</div>					
+					</div>
+				
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<br><br>
+					<button type="submit" action="form_fragebogen" id="fragen_submit" name="fragen_submit">Fertig</button>
+				</div>	
+			</div>
+
+		</form>
+	</body>
+</html>

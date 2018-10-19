@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>		
+			<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+			<link rel="stylesheet" href="static/bootstrap337/css/bootstrap-theme.min.css">
+			<link rel="stylesheet" href="static/general_style.css">
+			<link rel="stylesheet" media="screen" href ="static/bootstrap337/css/bootstrap.min.css">
+			<link rel="stylesheet" href="static/header_style.css">
+			<script src="static/jscripts.js"></script>
+			<script src="static/jquery.min.js"></script>
+			<script src="static/bootstrap337/js/bootstrap.js"></script>
+			<script src="static/bootstrap337/js/bootstrap.min.js"></script>
+		<title>Speech Recording Platform</title>		 
+	</head>		
+	
+	<body onload="if (LogHid==false)
+	{
+		$(tablecont).removeClass('hidden');
+	}
+	else{
+		$(tablecont).addClass('hidden');
+	}">
+			<script type="text/javascript">   
+				var LogHid = {{loghid|safe}}          
+			</script>
+		<div class="topnav" id="myTopnav">				
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/register">Registrieren</a></li>
+			</ul>	
+		</div>
+		<form enctype=multipart/form-data class="main_container" method="post">	
+			<div class="row">
+				<div class="title">Suche nach:</div>
+
+<!-- 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">					
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="log_patientnumm" 
+						name="log_patient" 
+						value="spkID"
+						onclick="setCont(lognumm);ResetCont(logbday);"
+						/> 
+						Patientennummer
+					<div class="hidden" id="lognumm">
+						<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+							<br>
+							<input type="text" id="log_spkID" name="log_spkID" placeholder="fallnummer"/>				
+						</div>
+					</div>
+				</div> -->
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">				
+						<input 
+						type="radio" 
+						class="option-input radio" 
+						id="log_birthdate" 
+						name="log_patient" 
+						value="spkbday"
+						onclick="setCont(logbday)"
+						/> 
+						Geburtsdatum
+					<div class="hidden" id="logbday">
+						<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+							<br>
+							<input type="date" name="log_inputbirth" id="log_inputbirth" max="3000-01-01" min="1900-01-01"/>				
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">				
+					<input 
+					type="radio" 
+					class="option-input radio" 
+					id="log_all" 
+					name="log_patient" 
+					value="all"
+					onclick="ResetCont(logbday);"/> 
+					Zeige alles					
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+						<label>	</label>
+					<button 
+					name="log_search" 
+					id="log_search" 
+					formaction="login"
+					value="">
+					<span class="glyphicon glyphicon-search"></span> 
+					Suche</button>
+				</div>
+
+				<div class="hidden" id="tablecont">
+					<br>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<br>
+						<table class="table" style=" max-height: 200px;">
+							<tr>
+								<th>Name</th>
+								<th>Vorname</th> 
+								<th>Geburtsdatum</th>
+								<th>Patientennummer</th>
+								<th>Login</th>
+							</tr>			
+							<tbody>				
+								{% for value in table %}
+								<tr>
+									<td>{{value[0]}}</td>
+									<td>{{value[1]}}</td>
+									<td>{{value[2]}}</td>
+									<td>{{value[3]}}</td>
+									<td >
+										<button 
+											name="log_search" 
+											type"submit" 
+											id="gicons" 
+											value = "{{value[3]}}">
+											<span  class="glyphicon glyphicon-log-in"></span>
+										</button >
+									</td>
+								</tr>                
+								{% endfor %}
+							</tbody>
+
+
+						</table>
+					</div>
+				</div>
+
+			</div>
+
+					
+			<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- 			<div class="row">
+				<p class="title">Lokale Anmeldung 
+					<a id="helptool"
+					onclick="alert('Verwenden Sie die Patientennummer für Benutzername und Passwort')">?
+					</a>
+						<font color="red">{{error}}</font>
+				</p>			
+				
+				<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+					<label>Benutzername</label>
+					<input type="text" id="usrlog" name="usrlog" placeholder="Benutzername" required>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><br></div>
+				<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+					<label>Passwort</label>
+					<input type="password" id="passlog" name="passlog" placeholder="Passwort" required>
+				</div>				
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><br></div>
+				<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+					<button type="submit" class="button">LOGIN</button>		
+				</div>
+			</div> -->
+			<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->				
+		</form>
+	</body>
+</html>

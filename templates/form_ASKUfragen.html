@@ -1,0 +1,157 @@
+<html>
+	<head>		
+		<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="static/bootstrap337/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="static/general_style.css">
+		<link rel="stylesheet" media="screen" href ="static/bootstrap337/css/bootstrap.min.css">
+		<link rel="stylesheet" href="static/header_style.css">
+		<script src="static/jscripts.js"></script>
+		<script src="static/jquery.min.js"></script>
+		<script src="static/bootstrap337/js/bootstrap.js"></script>
+		<script src="static/bootstrap337/js/bootstrap.min.js"></script>
+		<title>Speech Recording Platform</title>		 
+	</head>		
+
+	<body onload="set_rtas()">
+    
+		<script type="text/javascript">
+			var Rtas =  {{Rtas|safe}}; 	
+		</script>
+		
+		<div class="topnav" id="myTopnav">				
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/register">Registrieren</a></li>
+				<li><a href="/CI_speech_tasks">CI Test</a></li>
+				<!-- <li><a href="/downloads">Download</a></li> -->
+				<li><a href="/login" id="vallog">Login</a></li>
+			<!-- 	<li><a id="vallog">&#9919; Login</a></li> -->
+				<li><a href="javascript:void(0);" id="icon" class="icon" onclick="toggle_menu('myTopnav')">&#9776;</a></li>	
+			</ul>	
+		</div>
+		<form enctype=multipart/form-data id="fragen_ASKU" class="main_container"  method="post">	
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="title">Allgemeine Information</div>
+				</div>	
+
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+					<label>Name:</label> <p>{{spkINFO["lastname"]}}</p>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+					<label>Vorname:</label> <p>{{spkINFO["name"]}}</p>						
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+					<label>Geschlecht:</label> <p>{{spkINFO["gender"]}}</p>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+					<label>Geburtsdatum:</label> <p>{{spkINFO["birthdate"]}}</p>						
+				</div>
+				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+					<label>Patientennummer:</label> <p>{{spkINFO["speakerID"]}}</p>						
+				</div>
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="title">ASKU-Score</div>
+				</div>	
+
+				<div class="col-xs-8 col-sm-3 col-md-3 col-lg-2">
+					<label>Datum:</label>
+					<input type="date" name="ASKU_datum" id="ASKU_datum" max="3000-01-01" min="2018-01-01" required/>					
+				</div>	
+				
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<table id="form_askutable" class="askutable">
+						<tr>     
+							<th>Aussage</th>
+							<th></th>
+							<th></th>
+							<th>Einschätzung</th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>     
+							<th></th>
+							<th>Trifft gar nicht zu</th>
+							<th>Trifft wenig zu</th>
+							<th>Trifft etwas zu</th>
+							<th>Trifft ziemlich zu</th>
+							<th>Trifft voll und ganz zu</th>
+						</tr>
+						<tr style="opacity:0.7">     
+							<th></th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+							<th>4</th>
+							<th>5</th>
+						</tr>
+						<tr class="askutablerad">
+							<td style="text-align: left">In schwierigen Situationen kann ich mich auf meine Fähigkeiten verlassen.</td>
+							<td>
+							  <input type="radio" class="option-input radio" id="ASKU_q1_1" name="ASKU_q1" value="1" required>
+							</td>
+							<td>
+							  <input type="radio" class="option-input radio" id="ASKU_q1_2" name="ASKU_q1" value="2">
+							</td>
+							<td>
+							  <input type="radio" class="option-input radio" id="ASKU_q1_3" name="ASKU_q1" value="3">
+							</td>
+							<td>
+							  <input type="radio" class="option-input radio" id="ASKU_q1_4" name="ASKU_q1" value="4">
+							</td>
+							<td>
+							  <input type="radio" class="option-input radio" id="ASKU_q1_5" name="ASKU_q1" value="5">
+							</td>
+						</tr>
+						
+						<tr class="askutablerad">
+								<td style="text-align: left">Die meisten Probleme kann ich aus eigener Kraft gut meistern.</td>
+								<td>
+								  <input type="radio" class="option-input radio" id="ASKU_q2_1" name="ASKU_q2" value="1" required>
+								</td>
+								<td>
+								  <input type="radio" class="option-input radio" id="ASKU_q2_2" name="ASKU_q2" value="2">
+								</td>
+								<td>
+								  <input type="radio" class="option-input radio" id="ASKU_q2_3" name="ASKU_q2" value="3">
+								</td>
+								<td>
+								  <input type="radio" class="option-input radio" id="ASKU_q2_4" name="ASKU_q2" value="4">
+								</td>
+								<td>
+								  <input type="radio" class="option-input radio" id="ASKU_q2_5" name="ASKU_q2" value="5">
+								</td>
+						</tr>
+						
+						<tr class="askutablerad">
+								<td style="text-align: left">Auch anstrengende und komplizierte Aufgaben kann ich in der Regel gut lösen.</td>
+								<td>
+								  <input type="radio" class="option-input radio" id="ASKU_q3_1" name="ASKU_q3" value="1" required>
+								</td>
+								<td>
+								  <input type="radio" class="option-input radio" id="ASKU_q3_2" name="ASKU_q3" value="2">
+								</td>
+								<td>
+								  <input type="radio" class="option-input radio" id="ASKU_q3_3" name="ASKU_q3" value="3">
+								</td>
+								<td>
+								  <input type="radio" class="option-input radio" id="ASKU_q3_4" name="ASKU_q3" value="4">
+								</td>
+								<td>
+								  <input type="radio" class="option-input radio" id="ASKU_q3_5" name="ASKU_q3" value="5">
+								</td>
+						</tr>
+											
+					</table>
+
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<br><br>
+						<button type="submit" action="form_ASKUfragen" id="ASKU_submit" name="ASKU_submit">Fertig</button>
+					</div>
+			</div>
+
+		</form>
+	</body>
+</html>

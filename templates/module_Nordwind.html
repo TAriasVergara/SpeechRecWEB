@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" media="screen" href ="static/bootstrap337/css/bootstrap.min.css">
+		<link rel="stylesheet" href="static/bootstrap337/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="static/header_style.css">
+		<link rel="stylesheet" href="static/general_style.css">
+		<script src="static/jscripts.js"></script>
+		<script src="static/jquery.min.js"></script>
+		<script src="static/bootstrap337/js/bootstrap.js"></script>
+		<script src="static/bootstrap337/js/bootstrap.min.js"></script>
+		<title>Speech Recording Platform</title>		 
+	</head>	
+	
+	
+	<body onload="var bt_id = document.getElementById('rec_button');
+	if(bt_id.innerHTML=='STOP')
+	{
+		//$(timer_cont).removeClass('hidden');
+		var colorFlag = false;
+		document.getElementById('timerrec').style.color = 'black';
+		var seconds = 0;
+		var minutes = 0;
+		// Update the count up every 1 second
+		var x = setInterval(function() 
+		{
+			colorFlag = !colorFlag;
+			if (colorFlag)
+			{				
+				document.getElementById('rec_icon').style.color = 'red';
+			}
+			else
+			{
+				document.getElementById('rec_icon').style.color = 'black';
+			}
+			seconds++
+			if (seconds==60)
+			{
+				seconds=0;
+				minutes++;
+			}
+			var sec = seconds.toString();
+			if (seconds<10)
+			{
+				sec = '0'+sec;
+			}
+			var min = minutes.toString();
+			if (minutes<10)
+			{
+				min = '0'+min;
+			}
+			
+			document.getElementById('timerrec').innerHTML = min+':' +sec ;
+			
+		}, 1000);
+	}">
+
+		<div class="topnav" id="myTopnav">				
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/CI_speech_tasks">CI Test</a></li>
+			</ul>	
+		</div>
+
+		<form enctype=multipart/form-data class="main_container" formaction="module_Nordwind" method="post">	<!-- style="height: 100%" -->
+			<div class="title">Text vorlesen: Nordwind und Sonne</div>	
+			<p>Bitte lesen Sie den Text vor und klicken Sie dann auf weiter. Wenn Sie bereit sind, klicken Sie bitte auf "START".</p>
+			<div style="text-align: center;" class="nord_text">{{title}}</div>
+			<div class="nord_text">{{text}}</div>
+			
+			<p id="rec_msg" style="text-align: center;font-size: 25px;color: red"></p><!-- Here goes the saving data message -->
+
+			<div id="button_cont">
+			<p 	style="display:block;text-align:center" 
+				id="rec_icon"
+				 class="glyphicon glyphicon-record">
+				 <span class="cronotext" id="timerrec">00:00
+				</span>
+			</p>
+				<button id="rec_button" name="rec_button" onclick="recButton('rec_button',button_cont,'rec_msg')">{{recB}}</button>	
+			</div>
+		</form>
+
+
+	</body>
+</html>
